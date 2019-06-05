@@ -44,9 +44,17 @@ def avoid_snakes(directions, board, snake, opp_snake, food):
     return moves
     
 def avoid_potential_snakes(directions, snake, opp_snake):
-    return directions
+    moves = []
+    for direction in directions:
+        if distance_from_coordinate(snake, opp_snake[0])(direction) > 1:
+            moves.append(direction)
+    if moves == []:
+        moves = directions
+    return moves
     
 def rank_moves(directions, snake, food):
+    shuffle(directions)
+    directions.sort(key=distance_from_coordinate(snake, food))
     return directions
     
 def distance_from_coordinate(snake, coord):
