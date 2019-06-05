@@ -34,6 +34,8 @@ def avoid_potential_snakes(directions, snake, opp_snake):
     return directions
     
 def rank_moves(directions, snake, food):
+    shuffle(directions)
+    directions.sort(key=distance_from_coordinate(snake, food))
     return directions
     
 def distance_from_coordinate(snake, coord):
