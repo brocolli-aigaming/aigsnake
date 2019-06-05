@@ -14,7 +14,7 @@ def calculate_move(gamestate):
     moves = avoid_walls(all_moves, board, my_snake)
     moves = avoid_snakes(moves, board, my_snake, opp_snake, food)
     moves = avoid_potential_snakes(moves, my_snake, opp_snake)
-    moves = rank_moves(moves, my_snake, food)
+    moves = rank_moves(moves, my_snake, opp_snake)
     if moves != []:
         move = moves[0]
     else:
@@ -33,7 +33,9 @@ def avoid_snakes(directions, board, snake, opp_snake, food):
 def avoid_potential_snakes(directions, snake, opp_snake):
     return directions
     
-def rank_moves(directions, snake, food):
+def rank_moves(directions, snake, opp_snake):
+    shuffle(directions)
+    directions.sort(key=distance_from_coordinate(snake, opp_snake[0]), reverse=True)
     return directions
     
 def distance_from_coordinate(snake, coord):
