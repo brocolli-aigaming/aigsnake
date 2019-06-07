@@ -25,6 +25,7 @@ def calculate_move(gamestate):
 
 
 def avoid_walls(directions, board, snake):
+    z = 1
     moves = []
     for direction in directions:
         new_x = snake[0][0] + dirs[direction][0]
