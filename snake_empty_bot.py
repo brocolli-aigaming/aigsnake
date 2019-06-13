@@ -25,7 +25,14 @@ def calculate_move(gamestate):
 
 
 def avoid_walls(directions, board, snake):
-    return directions
+    z = 1
+    moves = []
+    for direction in directions:
+        new_x = snake[0][0] + dirs[direction][0]
+        new_y = snake[0][1] + dirs[direction][1]
+        if new_x >= 0 and new_x < len(board[0]) and new_y >= 0 and new_y < len(board):
+            moves.append(direction)
+    return moves
     
 def avoid_snakes(directions, board, snake, opp_snake, food):
     return directions
